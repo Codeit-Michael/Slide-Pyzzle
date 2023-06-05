@@ -5,9 +5,11 @@ from cell import Cell
 from piece import Piece
 
 class Frame:
-	def __init__(self, tile_size):
-		self.tile_size = tile_size
+	def __init__(self, frame_size):
 		self.grid_size = 3
+		self.cell_width = frame_size // self.grid_size
+		self.cell_height = frame_size // self.grid_size
+		self.cell_size = (self.cell_width, self.cell_height)
 		
 		self.grid = self._generate_cell()
 		self.pieces = self._generate_piece()
@@ -19,7 +21,7 @@ class Frame:
 		c_id = 0
 		for col in range(self.grid_size):
 			for row in range(self.grid_size):
-				cells.append(Cell(col, row, c_id, self.tile_size))
+				cells.append(Cell(row, col, self.cell_size, c_id))
 				c_id += 1
 		return cells
 
@@ -28,7 +30,7 @@ class Frame:
 		p_id = 0
 		for col in range(self.grid_size):
 			for row in range(self.grid_size):
-				puzzle_pieces.append(Piece(p_id,self.tile_size))
+				puzzle_pieces.append(Piece(self.cell_size, p_id))
 				p_id += 1
 		return puzzle_pieces
 
@@ -46,6 +48,6 @@ class Frame:
 	def get_moves(self):
 		pass
 
-	def draw(self):
+	def draw(self, display):
 		for cell in self.grid:
 			cell.draw(display)
