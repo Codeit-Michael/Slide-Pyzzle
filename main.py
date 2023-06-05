@@ -1,4 +1,3 @@
-"""PSEUDO CODE"""
 import pygame
 
 pygame.init()

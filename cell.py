@@ -1,11 +1,10 @@
-"""PSEUDO CODE"""
 import pygame
 
-class Tile:
-	def __init__(self, col, row, pin, tile_size):
+class Cell:
+	def __init__(self, col, row, c_id, tile_size):
 		self.col = col
 		self.row = row
-		self.pin = pin
+		self.c_id = c_id
 		self.tile_size = tile_size
 		self.occupying_piece = None
 
