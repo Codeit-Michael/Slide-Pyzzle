@@ -64,9 +64,10 @@ class Frame:
 	def handle_click(self, click):
 		c = self._is_move_valid(click)
 		try:
-			print(c[0].c_id, c[1].c_id)
+			# print(c[0].c_id, c[1].c_id)
+			c[0].occupying_piece, c[1].occupying_piece = c[1].occupying_piece, c[0].occupying_piece
 		except:
-			print(False)
+			return False
 
 	def draw(self, display):
 		for cell in self.grid:
