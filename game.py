@@ -9,14 +9,16 @@ class Game:
 		except:
 			return(False)
 
-	
-	# def is_game_over(self, frame):
-	# 	is_arranged = False
-	# 	for tile in frame.tile_list:
-	# 		piece_pin = tile.occupying_piece.pin
-	# 		if tile.pin == piece_pin:
-	# 			arranged = True
-	# 		else:
-	# 			arranged = False:
-	# 			break
-	# 	return is_arranged
+	def is_game_over(self, frame):
+		for cell in frame.grid:
+			piece_id = cell.occupying_piece.p_id
+			# print(piece_id, cell.c_id)
+			if cell.c_id == piece_id:
+				is_arranged = True
+			else:
+				is_arranged = False
+				break
+		return is_arranged
+
+	def message(self):
+		print("YOU WIN!!")

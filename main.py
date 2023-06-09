@@ -9,6 +9,7 @@ class Puzzle:
 		self.screen = screen
 		self.running = True
 		self.FPS = pygame.time.Clock()
+		self.is_arranged = False
 
 	def _draw(self, frame):
 		frame.draw(self.screen)
@@ -20,13 +21,18 @@ class Puzzle:
 		game = Game()
 		while self.running:
 
+			if game.is_game_over(frame):
+				self.is_arranged = True
+				game.message()
+
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
 					self.running = False
 
 				if event.type == pygame.KEYDOWN:
-					if game.arrow_key_clicked(event):
-						frame.handle_click(event)
+					if not self.is_arranged:
+						if game.arrow_key_clicked(event):
+							frame.handle_click(event)
 
 			self._draw(frame)
 			self.FPS.tick(30)
