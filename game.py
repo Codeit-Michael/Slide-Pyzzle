@@ -1,6 +1,12 @@
 import pygame
 
+pygame.font.init()
+
 class Game:
+	def __init__(self):
+		self.font = pygame.font.SysFont("Courier New", 35)
+		self.background_color = (255, 174, 66)
+		self.message_color = (17, 53, 165)
 
 	def arrow_key_clicked(self, click):
 		try:
@@ -20,5 +26,7 @@ class Game:
 				break
 		return is_arranged
 
-	def message(self):
-		print("YOU WIN!!")
+	def message(self, screen):
+		screen.fill(self.background_color, (5, 460, 440, 35))
+		instructions = self.font.render('You Win!!', True, self.message_color)
+		screen.blit(instructions,(125,460))
