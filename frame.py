@@ -40,9 +40,11 @@ class Frame:
 			cell.occupying_piece = piece_choice
 			self.pieces.remove(piece_choice)
 
-	# 2nd wave pseudo
-	def handle_click(self):
+	def _is_move_valid(self):
 		pass
+
+	def handle_click(self, click):
+		print(click)
 
 	# 2nd wave pseudo
 	def get_moves(self):

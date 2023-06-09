@@ -1,7 +1,7 @@
 import pygame
 
 from frame import Frame
-
+from game import Game
 pygame.init()
 
 class Puzzle:
@@ -17,12 +17,17 @@ class Puzzle:
 	def main(self, frame_size):
 		self.screen.fill("white")
 		frame = Frame(frame_size)
+		game = Game()
 		while self.running:
 
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
 					self.running = False
-			
+
+				if event.type == pygame.KEYDOWN:
+					if game.arrow_key_clicked(event):
+						frame.handle_click(event)
+
 			self._draw(frame)
 			self.FPS.tick(30)
 	
