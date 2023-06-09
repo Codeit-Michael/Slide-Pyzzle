@@ -40,15 +40,33 @@ class Frame:
 			cell.occupying_piece = piece_choice
 			self.pieces.remove(piece_choice)
 
-	def _is_move_valid(self):
-		pass
+	def _get_cell_from_id(self, given_id):
+		for cell in self.grid:
+			if cell.c_id == given_id:
+				return cell
+
+	def _is_move_valid(self, click):
+		moves = {
+			79: 1,
+			80: -1,
+			81: 3,
+			82: -3
+		}
+		for cell in self.grid:
+			move_id = cell.c_id + moves[click.scancode]
+			if move_id >= 0 and move_id <= 8:
+				new_cell = self._get_cell_from_id(move_id)
+				if new_cell.occupying_piece.img == None:
+					return (cell, new_cell)
+			else:
+				continue
 
 	def handle_click(self, click):
-		print(click)
-
-	# 2nd wave pseudo
-	def get_moves(self):
-		pass
+		c = self._is_move_valid(click)
+		try:
+			print(c[0].c_id, c[1].c_id)
+		except:
+			print(False)
 
 	def draw(self, display):
 		for cell in self.grid:
