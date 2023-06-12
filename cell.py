@@ -9,7 +9,6 @@ class Cell:
 		self.height = self.cell_size[1]
 		self.abs_x = row * self.width
 		self.abs_y = col * self.height
-		self.abs_pos = (self.abs_x, self.abs_y)
 
 		self.c_id = c_id
 
